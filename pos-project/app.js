@@ -11,7 +11,7 @@ const path         = require('path');
 
 
 mongoose
-  .connect(`mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0-clkkk.mongodb.net/test?retryWrites=true&w=majority`, {useNewUrlParser: true})
+  .connect(`mongodb://localhost/test`, {useNewUrlParser: true})
   .then(x => {
     console.log(`Connected to Mongo! Database name: "${x.connections[0].name}"`)
   })
