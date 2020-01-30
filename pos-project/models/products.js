@@ -6,7 +6,7 @@ const productSchema = new Schema({
   barcode: Number,
   name: String,
   price: Number,
-  existence: Number
+  stock: Number
 });
 
 const Product = mongoose.model("Product",productSchema);

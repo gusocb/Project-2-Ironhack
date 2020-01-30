@@ -34,16 +34,24 @@ router.post('/signup', (req, res, next) => {
 
 //Products page
 router.get('/products',(req, res, next) => {
-  res.send('THIS IS THE PRODUCTS PAGE')
+  Product.find()
+  .then(allproducts =>{
+    console.log('all the products',allproducts);
+    res.render('products',{prod:allproducts})
+  })
+  .catch(error => {
+    console.log(error)
+  })
 });
 
+//Add product
 router.get('/products/create-product',(req, res, next) => {
   res.render('create-product')
 });
 
 router.post('/products/create-product',(req, res, next) => {
-  const {barcode,name,price,existence} = req.body;
-  const newProduct = new Product ({barcode,name,price,existence});
+  const {barcode,name,price,stock} = req.body;
+  const newProduct = new Product ({barcode,name,price,stock});
 
   newProduct.save()
   .then((products) => {
@@ -53,5 +61,10 @@ router.post('/products/create-product',(req, res, next) => {
     console.log(error);
   })
 });
+
+
+
+
+
 
 module.exports = router;
