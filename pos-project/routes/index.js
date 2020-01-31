@@ -74,6 +74,30 @@ router.get('/products/:productId',(req, res, next) => {
   })
 });
 
+//Product edit
+router.get('/products/:productId/edit',(req, res, next) => {
+  Product.findById(req.params.productId)
+  .then(change => {
+    res.render('product-edit',{changeProd:change});
+  })
+  .catch(error => {
+    console-log(error);
+  })
+});
+
+
+//Product edit POST
+router.post('/products/:productId/edit',(req, res, next) => {
+
+  Product.findByIdAndUpdate(req.params.productId, {...req.body})
+  .then(change => {
+    res.redirect(`/products/${req.params.productId}`);
+  })
+  .catch(error => {
+    console-log(error);
+  })
+
+});
 
 
 

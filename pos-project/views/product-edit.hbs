@@ -1,0 +1,17 @@
+<h1>Make some changes</h1>
+
+<form action="/products/{{changeProd._id}}/edit" method="post">
+  <label for="">Name:</label>
+  <input type="text" name="name" value="{{changeProd.name}}"><br>
+
+  <label for="">Barcode:</label>
+  <input type="text" name="barcode" value="{{changeProd.barcode}}"><br>
+
+  <label for="">Price:</label>
+  <input type="text" name="price" value="{{changeProd.price}}"><br>
+
+  <label for="">Stock:</label>
+  <input type="number" name="stock" value="{{changeProd.stock}}"><br>
+
+  <button type="submit">EDIT</button>
+</form>

@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 //Product
 const productSchema = new Schema({
-  barcode: Number,
+  barcode: String,
   name: String,
-  price: Number,
+  price: String,
   stock: Number
 });
 
