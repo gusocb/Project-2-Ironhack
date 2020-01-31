@@ -36,7 +36,6 @@ router.post('/signup', (req, res, next) => {
 router.get('/products',(req, res, next) => {
   Product.find()
   .then(allproducts =>{
-    console.log('all the products',allproducts);
     res.render('products',{prod:allproducts})
   })
   .catch(error => {
@@ -44,23 +43,37 @@ router.get('/products',(req, res, next) => {
   })
 });
 
+
 //Add product
-router.get('/products/create-product',(req, res, next) => {
-  res.render('create-product')
+router.get('/products/add',(req, res, next) => {
+  res.render('product-add')
 });
 
-router.post('/products/create-product',(req, res, next) => {
+router.post('/products/add',(req, res, next) => {
   const {barcode,name,price,stock} = req.body;
   const newProduct = new Product ({barcode,name,price,stock});
 
   newProduct.save()
   .then((products) => {
-    res.redirect('/products/create-product');
+    res.redirect('/products/add');
   })
   .catch((error) => {
     console.log(error);
   })
 });
+
+
+//Product detail
+router.get('/products/:productId',(req, res, next) => {
+  Product.findById(req.params.productId)
+  .then(theproduct => {
+    res.render('product-detail',{singleProd:theproduct});
+  })
+  .catch(error => {
+    console.log(error);
+  })
+});
+
 
 
 

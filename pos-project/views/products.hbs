@@ -2,6 +2,7 @@
 {{#each prod}}
     
   <h3>{{this.name}}</h3>
-  <p>Barcode:{{this.barcode}}</p> 
+  <p>Barcode:{{this.barcode}}</p>
+  <a href="/products/{{this._id}}">More details</a>
     
 {{/each}}
