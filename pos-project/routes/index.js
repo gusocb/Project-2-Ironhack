@@ -19,18 +19,34 @@ router.get('/signup', (req, res, next) => {
   res.render('signup');
 });
 
-router.post('/signup', (req, res, next) => {
-  const {username,password} = req.body;
-  const newUser = new User({username,password});
+// router.post('/signup', (req, res, next) => {
+//   const newUser = new User({...req.body}, req.body.password);
+//   newUser.save()
+//     .then(() => {
+//     res.redirect('/home');
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   })
+// });
+
+router.post('/signup', async(req, res, next) => {
+  try{
+    const newUser = await User.register({...req.body}, req.body.password)
+    res.redirect('/home')
+  }
+  catch(error){
+    if(error.name == 'UserExistsError'){
+      console.log(error)
+      //res.redirect('/signup')
+      res.render('signup', {message: 'User already exist'})
+      return
+      // res.render('signup',{message:'The user already exist'});
+      // return
+    }
+  }
   
-  newUser.save()
-  .then((user) => {
-    res.redirect('/home');
-  })
-  .catch((error) => {
-    console.log(error);
-  })
-});
+})
 
 //Products page
 router.get('/products',(req, res, next) => {
@@ -81,27 +97,23 @@ router.get('/products/:productId/edit',(req, res, next) => {
     res.render('product-edit',{changeProd:change});
   })
   .catch(error => {
-    console-log(error);
+    console.log(error);
   })
 });
 
 
 //Product edit POST
-router.post('/products/:productId/edit',(req, res, next) => {
+router.post('/products/:productId/edit', (req, res, next) => {
 
   Product.findByIdAndUpdate(req.params.productId, {...req.body})
   .then(change => {
     res.redirect(`/products/${req.params.productId}`);
   })
   .catch(error => {
-    console-log(error);
+    console.log(error);
   })
 
 });
-
-
-
-
 
 
 module.exports = router;
