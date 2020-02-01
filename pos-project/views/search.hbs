@@ -1,0 +1,12 @@
+<h1>Search Product</h1>
+<form action="/search" method="GET">
+
+  <input type="text" name="barcode" placeholder="Barcode">
+  <button type="submit">Search</button>
+
+</form>
+
+{{#if search}}
+  {{search.name}}
+
+{{/if}}

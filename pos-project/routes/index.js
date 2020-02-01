@@ -30,10 +30,10 @@ router.get('/signup', (req, res, next) => {
       //   })
       // });
       
-      router.post('/signup', async(req, res, next) => {
-        try{
-          const newUser = await User.register({...req.body}, req.body.password)
-          res.redirect('/home')
+router.post('/signup', async(req, res, next) => {
+  try{
+    await User.register({...req.body}, req.body.password)
+    res.redirect('/login')
   }
   catch(error){
     if(error.name == 'UserExistsError'){
@@ -135,6 +135,12 @@ router.post('/products/:productId/edit', checkRole('ADMIN'), ensureLogin.ensureL
     console.log(error);
   })
 
+});
+
+//Search Products
+router.get('/search', ensureLogin.ensureLoggedIn(), checkRole('USER', 'ADMIN'), async (req, res, next) => {
+  const search = await Product.findOne({barcode: req.query.barcode})
+  res.render('search',{search})
 });
 
 
