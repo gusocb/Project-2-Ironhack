@@ -63,6 +63,12 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
   }
 })
 
+//Logout
+router.get("/logout", (req, res) => {
+  req.logout();
+  res.redirect("/login");
+});
+
 
 //Products page
 router.get('/products', checkRole('ADMIN'), ensureLogin.ensureLoggedIn(), (req, res, next) => {
