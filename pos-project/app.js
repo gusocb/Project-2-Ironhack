@@ -8,8 +8,8 @@ const hbs          = require('hbs');
 const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
-
-
+const passport     = require('./handlers/passport')
+const session      = require('express-session')
 
 mongoose
   .connect(`mongodb://localhost/test`, {useNewUrlParser: true, useUnifiedTopology: true})
@@ -26,6 +26,15 @@ const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.
 const app = express();
 
 // Middleware Setup
+app.use(session({
+  cookie:{
+    maxAge: 1000 * 60 * 60 * 24,
+  },
+  secret: 'GUSOCB'
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
