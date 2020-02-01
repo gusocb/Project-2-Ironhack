@@ -57,9 +57,9 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
   if(req.user.role === 'ADMIN'){
     res.redirect('/products')
   } else if(req.user.role === 'USER'){
-    res.redirect('/')
+    res.redirect('/search')
   } else {
-    res.redirect('/signup')
+    res.redirect('/login')
   }
 })
 
@@ -139,9 +139,18 @@ router.post('/products/:productId/edit', checkRole('ADMIN'), ensureLogin.ensureL
 
 //Search Products
 router.get('/search', ensureLogin.ensureLoggedIn(), checkRole('USER', 'ADMIN'), async (req, res, next) => {
-  const search = await Product.findOne({barcode: req.query.barcode})
-  res.render('search',{search})
+  if (req.query.barcode) {
+    const search = await Product.findOne({barcode: req.query.barcode})
+    res.json(search)
+  } else {
+    res.render('search')
+  }
 });
 
+
+//Cart
+router.get('/cart', ensureLogin.ensureLoggedIn(), checkRole('USER', 'ADMIN'), (req, res, next) => {
+  res.render('cart')
+});
 
 module.exports = router;
