@@ -10,6 +10,7 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
+
 mongoose
   .connect(`mongodb://localhost/test`, {useNewUrlParser: true, useUnifiedTopology: true})
   .then(x => {
@@ -47,7 +48,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Express - Generated with IronGenerator';
+app.locals.title = 'Point of Sale App. A.K.A tu jefa en chanclas';
 
 
 
