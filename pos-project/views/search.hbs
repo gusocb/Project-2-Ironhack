@@ -1,16 +1,19 @@
-<h1>Search Product</h1>
+<h1>Sales</h1>
 <input type="text" name="barcode" id="barcode" placeholder="Barcode">
-<button onclick="getProduct()">Search</button>
+<button onclick="getProduct()">Add to cart</button>
 <span id="errorMessage" class="hidden">Este producto no existe</span>
 <br>
 
 
-<div class="show-product" id="show-product"></div>
-
-<a href="/logout">Logout</a>
+<div class="show-product" id="show-product"></div><br>
+<span class="total" id="total"></span><br>
 
 <script>
+
+let prices = [];
+
 function getProduct(){
+  //Add products to list
   let barcode = document.getElementById('barcode');
   if(!barcode.value) return;
   const errorMessage = document.getElementById("errorMessage")
@@ -24,13 +27,24 @@ function getProduct(){
     const productDiv = document.createElement('div')
     productDiv.innerHTML = `${product.name} <br> $<span class="price">${product.price}</span>`
     productList.appendChild(productDiv)
+    //Clean barcode value for next operation
     barcode.value = null;
+    //Save each price for each prodct
+    priceNumber = parseInt(product.price);
+    prices.push(priceNumber);
     calculateTotal()
+    
   })
 }
 
 function calculateTotal(){
-  console.log('aqui va la logica del total')
+  let total =0;
+  prices.forEach(ele => {
+    total += ele;
+  });
+  //Add total to view
+  totalSpan = document.getElementById('total')
+  totalSpan.innerHTML = `Total: $${total}`  
 }
 
 </script>
