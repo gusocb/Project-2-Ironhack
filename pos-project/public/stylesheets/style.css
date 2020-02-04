@@ -5,4 +5,10 @@ body {
 a {
   color: #00B7FF; }
 
-/*# sourceMappingURL=style.css.map */
+  .hidden {
+    display: none;
+  }
+
+  .total {
+    font-weight: bold;
+  }

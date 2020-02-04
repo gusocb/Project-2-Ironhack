@@ -13,8 +13,13 @@ const userSchema = new Schema ({
     type: String,
     enum: [],
     default: 'USER'
-  }
-},
+  },
+  cart:[{
+    type: Schema.Types.ObjectId,
+    ref: 'Product'
+  }]
+  },
+
   {
     timestamps: true,
     versionKey: false

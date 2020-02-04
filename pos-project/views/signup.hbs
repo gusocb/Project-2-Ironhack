@@ -8,5 +8,9 @@
   Last Name:<br>
   <input type="text" name="lastName"><br>
   <button type="submit">Sign Up</button>
+  {{#if message}}
+  <br>
+  <p>The username already exist. Please use another one.</p>
+  {{/if}}
 </form>
 
