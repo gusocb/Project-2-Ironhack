@@ -3,6 +3,8 @@ const router  = express.Router();
 const checkRole = require('../middlewares/checkRoles')
 const ensureLogin = require('connect-ensure-login')
 const passport = require('../handlers/passport')
+const axios = require('axios');
+
 
 //Require models
 const User = require('../models/users');
@@ -148,9 +150,14 @@ router.get('/search', ensureLogin.ensureLoggedIn(), checkRole('USER', 'ADMIN'), 
 });
 
 
-//Sales Update Stock
-router.post('/search?barcode', ensureLogin.ensureLoggedIn(), checkRole('USER', 'ADMIN'), (req, res, next) => {
-  Product.findOneAndUpdate().then().catch();
+//Update product DB
+router.post('/checkout', ensureLogin.ensureLoggedIn(), checkRole('ADMIN', 'USER'), (req, res, next) => {
+  const productFromSale = req.body;
+  productFromSale.forEach(async ele => {
+    await Product.findByIdAndUpdate(ele.id,{ "$inc": { "stock": ele.quantity*-1 } })
+  })
+  res.json({redirect: '/search'});
 });
 
 module.exports = router;
+

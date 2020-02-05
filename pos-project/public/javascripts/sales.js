@@ -78,6 +78,21 @@ function deleteProduct(id) {
   calculateTotal()
 }
 
-function checkout() {
+function checkOut() {
+  let currentSale = [];
+  const quantities =  document.getElementsByClassName('quantity');
+  for (let i = 0; i < quantities.length ; i++) {
+    let parent = quantities[i].parentNode
+    currentSale.push({id:parent.id,quantity: parseInt(quantities[i].innerHTML)})
+  }
   
+  fetch('/checkout', {
+    method: 'POST',
+    body: JSON.stringify(currentSale),
+    headers:{
+      'Content-Type': 'application/json'
+    }
+  }).then(res => res.json())
+  .then(response => location.replace(response.redirect))
+  .catch(error => console.error('Error:', error));
 }
