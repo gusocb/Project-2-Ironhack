@@ -57,13 +57,18 @@ router.get('/login', (req, res, next) => {
 
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
   if(req.user.role === 'ADMIN'){
-    res.redirect('/products')
+    res.redirect('/home')
   } else if(req.user.role === 'USER'){
-    res.redirect('/search')
+    res.redirect('/home')
   } else {
     res.redirect('/login')
   }
 })
+
+//Landing page
+router.get('/home', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  res.render('home');
+});
 
 //Logout
 router.get("/logout", (req, res) => {

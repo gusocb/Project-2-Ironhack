@@ -1,13 +1,26 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top d-flex justify-content-between">
+  <a class="navbar-brand" href="/">Super Cool POS</a>
+  <a class="btn btn-light" href="/login">Login</a>
+</nav>
+
 <form action="/signup" method="POST">
-  Username:<br>
-  <input type="text" name="username"><br>
-  Password:<br>
-  <input type="password" name="password"><br>
-  Name:<br>
-  <input type="text" name="name"><br>
-  Last Name:<br>
-  <input type="text" name="lastName"><br>
-  <button type="submit">Sign Up</button>
+  <div class="form-group">
+    <label for="username">Username:</label>
+    <input type="text" class="form-control" name="username" placeholder="Username">
+  </div>  
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" name="password" placeholder="Password">
+  </div>  
+  <div class="form-group">
+    <label for="name">Name:</label>
+    <input type="text" class="form-control" name="name" placeholder="Tyrion">
+  </div>  
+  <div class="form-group">
+    <label for="username">Last Name:</label>
+    <input type="text" class="form-control" name="lastname" placeholder="Lannister">
+  </div>  
+  <button class="btn btn-primary" type="submit">Sign Up</button>
   {{#if message}}
   <br>
   <p>The username already exist. Please use another one.</p>
