@@ -148,9 +148,9 @@ router.get('/search', ensureLogin.ensureLoggedIn(), checkRole('USER', 'ADMIN'), 
 });
 
 
-//Cart
-router.get('/cart', ensureLogin.ensureLoggedIn(), checkRole('USER', 'ADMIN'), (req, res, next) => {
-  res.render('cart')
+//Sales Update Stock
+router.post('/search?barcode', ensureLogin.ensureLoggedIn(), checkRole('USER', 'ADMIN'), (req, res, next) => {
+  Product.findOneAndUpdate().then().catch();
 });
 
 module.exports = router;
