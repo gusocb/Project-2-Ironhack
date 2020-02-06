@@ -16,21 +16,10 @@ router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-
+//Signup
 router.get('/signup', (req, res, next) => {
   res.render('signup');
 });
-
-// router.post('/signup', (req, res, next) => {
-  //   const newUser = new User({...req.body}, req.body.password);
-  //   newUser.save()
-  //     .then(() => {
-    //     res.redirect('/home');
-    //   })
-    //   .catch((error) => {
-      //     console.log(error);
-      //   })
-      // });
       
 router.post('/signup', async(req, res, next) => {
   try{
@@ -103,18 +92,6 @@ router.post('/products/add', checkRole('ADMIN'), ensureLogin.ensureLoggedIn(), (
     res.redirect('/products/add');
   })
   .catch((error) => {
-    console.log(error);
-  })
-});
-
-
-//Product detail
-router.get('/products/:productId', checkRole('ADMIN'), ensureLogin.ensureLoggedIn(),(req, res, next) => {
-  Product.findById(req.params.productId)
-  .then(theproduct => {
-    res.render('product-detail',{singleProd:theproduct});
-  })
-  .catch(error => {
     console.log(error);
   })
 });

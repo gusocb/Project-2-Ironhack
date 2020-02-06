@@ -19,7 +19,10 @@
 <span id="errorMessage" class="hidden">The product does not exist</span>
 
 <div class="show-product" id="show-product"></div><br>
-<span class="total" id="total"></span><br>
-<button class="checkout" onclick="checkOut()" >Checkout</button>
+
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark d-flex justify-content-end fixed-bottom">
+<span class="total" id="total">Total $0</span>
+<button class="checkout btn btn-light" onclick="checkOut()" >Checkout</button>
+</nav>
 
 <script src="/javascripts/sales.js"></script>
