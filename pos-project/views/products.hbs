@@ -1,5 +1,19 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark d-flex justify-content-between fixed-top">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/home">Home</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/products">Products</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/search">Sales</a>
+    </li>
+  </ul>
+  <a href="/logout">Logout</a>
+</nav>
+
 <h1>Products</h1>
-<h2><a href="/search">Search for products</a></h2>
 {{#each prod}}
     
   <h3>{{this.name}}</h3>
@@ -7,5 +21,3 @@
   <a href="/products/{{this._id}}">More details</a>
     
 {{/each}}
-<br>
-<a href="/logout">Logout</a>

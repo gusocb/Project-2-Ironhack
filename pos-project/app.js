@@ -57,7 +57,7 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 
 
 // default value for title local
-app.locals.title = 'Point of Sale App. A.K.A tu jefa en chanclas';
+app.locals.title = 'Super Cool Point of Sale';
 
 
 

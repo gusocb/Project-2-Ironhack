@@ -3,6 +3,8 @@ const router  = express.Router();
 const checkRole = require('../middlewares/checkRoles')
 const ensureLogin = require('connect-ensure-login')
 const passport = require('../handlers/passport')
+const axios = require('axios');
+
 
 //Require models
 const User = require('../models/users');
@@ -55,13 +57,18 @@ router.get('/login', (req, res, next) => {
 
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
   if(req.user.role === 'ADMIN'){
-    res.redirect('/products')
+    res.redirect('/home')
   } else if(req.user.role === 'USER'){
-    res.redirect('/search')
+    res.redirect('/home')
   } else {
     res.redirect('/login')
   }
 })
+
+//Landing page
+router.get('/home', ensureLogin.ensureLoggedIn(), (req, res, next) => {
+  res.render('home');
+});
 
 //Logout
 router.get("/logout", (req, res) => {
@@ -148,9 +155,14 @@ router.get('/search', ensureLogin.ensureLoggedIn(), checkRole('USER', 'ADMIN'), 
 });
 
 
-//Cart
-router.get('/cart', ensureLogin.ensureLoggedIn(), checkRole('USER', 'ADMIN'), (req, res, next) => {
-  res.render('cart')
+//Update product DB
+router.post('/checkout', ensureLogin.ensureLoggedIn(), checkRole('ADMIN', 'USER'), (req, res, next) => {
+  const productFromSale = req.body;
+  productFromSale.forEach(async ele => {
+    await Product.findByIdAndUpdate(ele.id,{ "$inc": { "stock": ele.quantity*-1 } })
+  })
+  res.json({redirect: '/search'});
 });
 
 module.exports = router;
+

@@ -1,10 +1,31 @@
-<form action="/login" method="POST">
-  Username:<br>
-  <input type="text" name="username"><br>
-  Password:<br>
-  <input type="password" name="password"><br>
-  <button type="submit">Login</button>
-</form>
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark fixed-top">
 
-You don't have an account?<br>
-<button><a href="/signup">Sign Up</a></button>
+  <a class="navbar-brand" href="/">Super Cool POS</a>
+
+</nav>
+
+<div class="container">
+  
+  <div class="row">
+    
+    <div class="col">
+
+      <form action="/login" method="POST">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" name="username" placeholder="Enter username">
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" name="password" placeholder="Enter password">
+        </div>
+        <button class="btn btn-primary" type="submit">Login</button>
+      </form>
+      <span>Don't have an account?</span>
+      <a href="/signup">Sign Up</a>
+
+    </div>
+
+  </div>
+
+</div>

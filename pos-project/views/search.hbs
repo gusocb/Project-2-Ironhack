@@ -1,11 +1,25 @@
+<nav class="navbar navbar-expand-sm bg-primary navbar-dark d-flex justify-content-between fixed-top">
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="/home">Home</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/products">Products</a>
+    </li>
+    <li class="nav-item active">
+      <a class="nav-link" href="/search">Sales</a>
+    </li>
+  </ul>
+  <a href="/logout">Logout</a>
+</nav>
+
 <h1>Sales</h1>
 <input type="text" name="barcode" id="barcode" placeholder="Barcode">
 <button onclick="getProduct()">Add to cart</button>
 <span id="errorMessage" class="hidden">The product does not exist</span>
-<br>
-
 
 <div class="show-product" id="show-product"></div><br>
 <span class="total" id="total"></span><br>
+<button class="checkout" onclick="checkOut()" >Checkout</button>
 
 <script src="/javascripts/sales.js"></script>
