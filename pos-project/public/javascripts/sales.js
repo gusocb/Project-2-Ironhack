@@ -19,6 +19,7 @@ function getProduct(){
     const productList = document.getElementById('show-product')
     const productDiv = document.createElement('div')
     productDiv.id = product._id
+    productDiv.className = 'sale-card'
     productDiv.innerHTML = 
       `${product.name} <br>
       $<span class="price">${product.price}</span> <br>

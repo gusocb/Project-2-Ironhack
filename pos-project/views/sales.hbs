@@ -1,0 +1,13 @@
+{{#each sales}}
+  Venta {{@index}}:
+  <br/>
+  {{#each this.movements}}
+    Cantidad: {{this.quantity}}
+    Product: {{this.product.name}}
+    Precio de Venta: {{this.product.price}}
+    SubTotal: {{this.subTotal}}
+  <br/>
+  {{/each}}
+  Total de la Venta: {{this.total}}
+  <br/>
+{{/each}}
