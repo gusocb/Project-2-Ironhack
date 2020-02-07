@@ -23,7 +23,7 @@ function getProduct(){
     productDiv.innerHTML = 
       `${product.name} <br>
       $<span class="price">${product.price}</span> <br>
-      Cantidad: <button class="add btn btn-danger" onclick="changeQuant(1, '${product._id}')">+</button><span class="quantity">1</span><button class="substract btn btn-success" onclick="changeQuant(-1, '${product._id}')">-</button>
+      Cantidad: <button class="add btn btn-success" onclick="changeQuant(1, '${product._id}')">+</button><span class="quantity">1</span><button class="substract btn btn-danger" onclick="changeQuant(-1, '${product._id}')">-</button>
       Stock: <span class="stock">${product.stock}</span>
       <span onclick="deleteProduct('${product._id}')"class="borrar">X</span>`
     productList.appendChild(productDiv)
