@@ -17,15 +17,16 @@
 </nav>
 
 {{#each sales}}
-  Venta {{@index}}:
+  Sale {{@index}}:
   <br/>
   {{#each this.movements}}
-    Cantidad: {{this.quantity}}
-    Product: {{this.product.name}}
-    Precio de Venta: {{this.product.price}}
-    SubTotal: {{this.subTotal}}
+    Quantity: {{this.quantity}}<br>
+    Product: {{this.product.name}}<br>
+    Single Price: ${{this.product.price}}<br>
+    Sub-Total: ${{this.subTotal}}
   <br/>
   {{/each}}
-  Total de la Venta: {{this.total}}
+  Total Sale: {{this.total}}
   <br/>
+  <br>
 {{/each}}

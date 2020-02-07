@@ -12,7 +12,7 @@ const Product = require('../models/products');
 const Movement = require('../models/movements');
 const Sale = require('../models/sales');
 
-/* GET home page */
+/* GET index page */
 router.get('/', (req, res, next) => {
   res.render('index');
 });
@@ -30,11 +30,8 @@ router.post('/signup', async(req, res, next) => {
   catch(error){
     if(error.name == 'UserExistsError'){
       console.log(error)
-      //res.redirect('/signup')
       res.render('signup', {message: 'User already exist'})
       return
-      // res.render('signup',{message:'The user already exist'});
-      // return
     }
   }
   
@@ -44,7 +41,7 @@ router.post('/signup', async(req, res, next) => {
 router.get('/login', (req, res, next) => {
   res.render('login');
 });
-
+//Authorization
 router.post('/login', passport.authenticate('local'), (req, res, next) => {
   if(req.user.role === 'ADMIN'){
     res.redirect('/home')
@@ -56,8 +53,11 @@ router.post('/login', passport.authenticate('local'), (req, res, next) => {
 })
 
 //Landing page
-router.get('/home', ensureLogin.ensureLoggedIn(), (req, res, next) => {
-  res.render('home');
+router.get('/home', ensureLogin.ensureLoggedIn(), checkRole('ADMIN','USER'), (req, res, next) => {
+  User.findOne({username: req.session.passport.user})
+  .then( theUser => {
+    res.render('home',{user:theUser})
+  })
 });
 
 //Logout
@@ -78,7 +78,7 @@ router.get('/products', checkRole('ADMIN'), ensureLogin.ensureLoggedIn(), (req, 
   })
 });
 
-
+//Reports Page
 router.get('/sales',  (req, res, next) => {
   Sale.find()
   .populate({

@@ -9,24 +9,26 @@
     <li class="nav-item">
       <a class="nav-link" href="/search">Sales</a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/sales">Reports</a>
+    </li>
   </ul>
   <a href="/logout">Logout</a>
 </nav>
 
-
 <h1>Make some changes</h1>
 
 <form action="/products/{{changeProd._id}}/edit" method="post">
-  <label for="">Name:</label>
+  <label for="">Name:</label><br>
   <input type="text" name="name" value="{{changeProd.name}}"><br>
 
-  <label for="">Barcode:</label>
+  <label for="">Barcode:</label><br>
   <input type="text" name="barcode" value="{{changeProd.barcode}}"><br>
 
-  <label for="">Price:</label>
+  <label for="">Price:</label><br>
   <input type="text" name="price" value="{{changeProd.price}}"><br>
 
-  <label for="">Stock:</label>
+  <label for="">Stock:</label><br>
   <input type="number" name="stock" value="{{changeProd.stock}}"><br>
 
   <button type="submit">EDIT</button>
