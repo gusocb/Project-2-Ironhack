@@ -10,27 +10,17 @@ const axios = require('axios');
 const User = require('../models/users');
 const Product = require('../models/products');
 const Movement = require('../models/movements');
+const Sale = require('../models/sales');
 
 /* GET home page */
 router.get('/', (req, res, next) => {
   res.render('index');
 });
 
-
+//Signup
 router.get('/signup', (req, res, next) => {
   res.render('signup');
 });
-
-// router.post('/signup', (req, res, next) => {
-  //   const newUser = new User({...req.body}, req.body.password);
-  //   newUser.save()
-  //     .then(() => {
-    //     res.redirect('/home');
-    //   })
-    //   .catch((error) => {
-      //     console.log(error);
-      //   })
-      // });
       
 router.post('/signup', async(req, res, next) => {
   try{
@@ -89,6 +79,33 @@ router.get('/products', checkRole('ADMIN'), ensureLogin.ensureLoggedIn(), (req, 
 });
 
 
+router.get('/sales',  (req, res, next) => {
+  Sale.find()
+  .populate({
+    path : 'movements',
+    populate : {
+      path : 'product'
+    }
+  })
+  .then(sales =>{
+    sales = sales.map(sale => {
+      sale.movements = sale.movements.map(movement=>{
+        movement.subTotal = movement.quantity * movement.product.price
+        return movement;
+      })
+      sale.total = sale.movements.reduce((prev, current) => {
+        return prev + current.subTotal
+      }, 0)
+      return sale;
+    })
+    res.render('sales', {sales})
+  })
+  .catch(error => {
+    console.log(error)
+  })
+});
+
+
 //Add product
 router.get('/products/add', checkRole('ADMIN'), (req, res, next) => {
   res.render('product-add')
@@ -103,18 +120,6 @@ router.post('/products/add', checkRole('ADMIN'), ensureLogin.ensureLoggedIn(), (
     res.redirect('/products/add');
   })
   .catch((error) => {
-    console.log(error);
-  })
-});
-
-
-//Product detail
-router.get('/products/:productId', checkRole('ADMIN'), ensureLogin.ensureLoggedIn(),(req, res, next) => {
-  Product.findById(req.params.productId)
-  .then(theproduct => {
-    res.render('product-detail',{singleProd:theproduct});
-  })
-  .catch(error => {
     console.log(error);
   })
 });
@@ -156,10 +161,17 @@ router.get('/search', ensureLogin.ensureLoggedIn(), checkRole('USER', 'ADMIN'), 
 
 
 //Update product DB
-router.post('/checkout', ensureLogin.ensureLoggedIn(), checkRole('ADMIN', 'USER'), (req, res, next) => {
+router.post('/checkout', ensureLogin.ensureLoggedIn(), checkRole('ADMIN', 'USER'), async (req, res, next) => {
   const productFromSale = req.body;
-  productFromSale.forEach(async ele => {
-    await Product.findByIdAndUpdate(ele.id,{ "$inc": { "stock": ele.quantity*-1 } })
+  let newSale = await Sale.create({user: req.user._id})
+  productFromSale.map(async ele => {
+    let newProduct = await Product.findByIdAndUpdate(ele.id,{ "$inc": { "stock": ele.quantity*-1 } })
+    let newMovement = await Movement.create({ quantity: ele.quantity, product: ele.id})
+    await Sale.findByIdAndUpdate(newSale._id, {
+      $push: {
+        movements: newMovement._id
+      }
+    })
   })
   res.json({redirect: '/search'});
 });

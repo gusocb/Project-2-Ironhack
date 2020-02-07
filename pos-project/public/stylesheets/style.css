@@ -16,3 +16,13 @@ a {
   .card-img-top{
     height: 200px;
   }
+
+  .total {
+    font-size: x-large;
+    color: white;
+    padding-right: 70px;
+  }
+
+.sale-card{
+  
+}

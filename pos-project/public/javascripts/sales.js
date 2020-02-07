@@ -19,10 +19,11 @@ function getProduct(){
     const productList = document.getElementById('show-product')
     const productDiv = document.createElement('div')
     productDiv.id = product._id
+    productDiv.className = 'sale-card'
     productDiv.innerHTML = 
       `${product.name} <br>
       $<span class="price">${product.price}</span> <br>
-      Cantidad: <span class="add" onclick="changeQuant(1, '${product._id}')">+</span><span class="quantity">1</span><span class="substract" onclick="changeQuant(-1, '${product._id}')">-</span>
+      Cantidad: <button class="add btn btn-danger" onclick="changeQuant(1, '${product._id}')">+</button><span class="quantity">1</span><button class="substract btn btn-success" onclick="changeQuant(-1, '${product._id}')">-</button>
       Stock: <span class="stock">${product.stock}</span>
       <span onclick="deleteProduct('${product._id}')"class="borrar">X</span>`
     productList.appendChild(productDiv)

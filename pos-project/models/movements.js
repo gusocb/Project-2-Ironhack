@@ -3,9 +3,11 @@ const Schema = mongoose.Schema;
 
 //Movements
 const movementSchema = new Schema ({
-  product: String,
-  inDate: Date,
-  outDate: Date
+  quantity: { type: Number },
+  product: { type: Schema.Types.ObjectId, ref:'Product'}
+},
+{
+  timestamps: true
 });
 
 const Movement = mongoose.model("Movement",movementSchema);
