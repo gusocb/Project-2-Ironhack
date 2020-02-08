@@ -28,7 +28,7 @@ function getProduct(){
       <span class="quantity" id="amount">1</span>
       <button class="substract btn btn-secondary" onclick="changeQuant(-1, '${product._id}')">-</button><br>
       <span class="sale-description">Stock: </span>
-      <span class="stock" id="amount">${product.stock}</span>
+      <span class="stock" id="amount">${product.stock}</span><br>
       <button onclick="deleteProduct('${product._id}')"class="borrar btn btn-danger">X</button>`
     productList.appendChild(productDiv)
     //Clean barcode value for next operation
