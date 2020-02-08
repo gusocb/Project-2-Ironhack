@@ -13,23 +13,33 @@
       <a class="nav-link" href="/sales">Reports</a>
     </li>
   </ul>
-  <a href="/logout">Logout</a>
+  <a class="btn btn-danger" href="/logout">Logout</a>
 </nav>
 
-<h1>Make some changes</h1>
 
-<form action="/products/{{changeProd._id}}/edit" method="post">
-  <label for="">Name:</label><br>
-  <input type="text" name="name" value="{{changeProd.name}}"><br>
+<div class="edit-main">
 
-  <label for="">Barcode:</label><br>
-  <input type="text" name="barcode" value="{{changeProd.barcode}}"><br>
+  <div class="edit-form">
 
-  <label for="">Price:</label><br>
-  <input type="text" name="price" value="{{changeProd.price}}"><br>
+    <h1>Make some changes</h1>
+    <form class="edit-form-form" action="/products/{{changeProd._id}}/edit" method="post">
+      <label for="">Name:</label><br>
+      <input type="text" name="name" value="{{changeProd.name}}"><br><br>
 
-  <label for="">Stock:</label><br>
-  <input type="number" name="stock" value="{{changeProd.stock}}"><br>
+      <label for="">Barcode:</label><br>
+      <input type="text" name="barcode" value="{{changeProd.barcode}}"><br><br>
 
-  <button type="submit">EDIT</button>
-</form>
+      <label for="">Price:</label><br>
+      <input type="text" name="price" value="{{changeProd.price}}"><br><br>
+
+      <label for="">Stock:</label><br>
+      <input type="number" name="stock" value="{{changeProd.stock}}"><br><br>
+      <br>
+      <br>
+
+      <button class="btn btn-success" type="submit">EDIT</button>
+    </form>
+
+  </div>
+
+</div>

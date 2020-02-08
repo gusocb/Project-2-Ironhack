@@ -3,27 +3,33 @@
   <a class="btn btn-light" href="/login">Login</a>
 </nav>
 
-<form action="/signup" method="POST">
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input type="text" class="form-control" name="username" placeholder="Username">
-  </div>  
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input type="password" class="form-control" name="password" placeholder="Password">
-  </div>  
-  <div class="form-group">
-    <label for="name">Name:</label>
-    <input type="text" class="form-control" name="name" placeholder="Tyrion">
-  </div>  
-  <div class="form-group">
-    <label for="username">Last Name:</label>
-    <input type="text" class="form-control" name="lastName" placeholder="Lannister">
-  </div>  
-  <button class="btn btn-primary" type="submit">Sign Up</button>
-  {{#if message}}
-  <br>
-  <p>The username already exist. Please use another one.</p>
-  {{/if}}
-</form>
+<div class="signup-main">
+  <div class="signup-container">
+    <form action="/signup" method="POST">
+      <div class="form-group">
+        <label for="username">Username:</label>
+        <input type="text" class="form-control" name="username" placeholder="Username">
+      </div>  
+      <div class="form-group">
+        <label for="password">Password:</label>
+        <input type="password" class="form-control" name="password" placeholder="Password">
+      </div>  
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" class="form-control" name="name" placeholder="Tyrion">
+      </div>  
+      <div class="form-group">
+        <label for="username">Last Name:</label>
+        <input type="text" class="form-control" name="lastName" placeholder="Lannister">
+      </div> 
+      <div class="signup-footer">
+        <button class="btn btn-primary" type="submit">Sign Up</button>
+        {{#if message}}
+        <br>
+        <p>The username already exist. Please use another one.</p>
+        {{/if}}
+      </div> 
+    </form>
+  </div>
+</div>
 
