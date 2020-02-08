@@ -1,6 +1,6 @@
 body {
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; }
+  font: 14px "Roboto Condensed", Helvetica, Arial, sans-serif; }
 
 a {
   color: #00B7FF; }
@@ -27,7 +27,7 @@ a {
     width: 25%;
   }
 .navbar {
-  font-size: large;
+  font-size: 2rem;
   padding-left: 3.5rem;
   padding-right: 3.5rem;
 }
