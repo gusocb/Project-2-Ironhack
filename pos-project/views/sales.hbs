@@ -16,25 +16,33 @@
   <a href="/logout">Logout</a>
 </nav>
 
-{{#each sales}}
-  <div class="card">
-    <div class="card-body">
-    <h3 class="card-title">
-      Sale {{@index}}:
-    </h3>
+<div class="reports-container">
+  <h1>Sales Reports</h1>
 
-    {{#each this.movements}}
-    <p class="card-text"> 
-      Quantity: {{this.quantity}}
-      Product: {{this.product.name}}
-      Single Price: ${{this.product.price}}
-      Sub-Total: ${{this.subTotal}}
-    </p>
+  <div class="report-cards-container">
+    {{#each sales}}
+      <div class="card" id="report-card">
+        <div class="card-header">
+          <h3 class="card-title">Sale {{@index}}:</h3>
+        </div>
+
+        <div class="card-body">
+          {{#each this.movements}}
+          <p class="card-text">Product: {{this.product.name}}</p>
+          <p class="card-text">Single Price: ${{this.product.price}}</p>
+          <p class="card-text">Sold Pieces: {{this.quantity}}</p>
+          <p class="card-text" id="subtotal">Sub-Total: ${{this.subTotal}}</p>
+          {{/each}}
+
+          <div class="card-footer">
+            <h4 class="card-title">
+              Total Sale: ${{this.total}}
+            </h4>
+          </div>
+
+        </div>
+
+      </div>
     {{/each}}
-    
-    <h4 class="card-title">
-    Total Sale: ${{this.total}}
-    </h4>
-    </div>
   </div>
-{{/each}}
+</div>

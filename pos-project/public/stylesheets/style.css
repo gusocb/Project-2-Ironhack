@@ -138,3 +138,21 @@ a {
 .product-main-container{
   margin-top: 3rem;
 }
+
+.reports-container {
+  margin-top: 3rem;
+}
+
+.report-cards-container {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+#report-card {
+  margin: 1rem;
+}
+
+#subtotal {
+  font-weight: bold;
+}
