@@ -32,7 +32,7 @@
         <p class="card-text">Price: ${{this.price}}</p>
         <p class="card-text">Stock: {{this.stock}}</p>
         <a href="/products/{{this._id}}/edit" class="card-link">Edit</a>
-        <a href="/products/delete" class="card-link">Delete</a>
+        <a href='/products/{{this._id}}/delete' class="card-link">Delete</a>
       </div>
     </div>
     {{/each}}
