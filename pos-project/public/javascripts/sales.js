@@ -21,11 +21,15 @@ function getProduct(){
     productDiv.id = product._id
     productDiv.className = 'sale-card'
     productDiv.innerHTML = 
-      `${product.name} <br>
-      $<span class="price">${product.price}</span> <br>
-      Cantidad: <button class="add btn btn-success" onclick="changeQuant(1, '${product._id}')">+</button><span class="quantity">1</span><button class="substract btn btn-danger" onclick="changeQuant(-1, '${product._id}')">-</button>
-      Stock: <span class="stock">${product.stock}</span>
-      <span onclick="deleteProduct('${product._id}')"class="borrar">X</span>`
+      `<h3>${product.name}</h3>
+      <span class="sale-description">$</span><span class="price sale-description">${product.price}</span> <br>
+      <span class="sale-description">Cantidad: </span><br>
+      <button class="add btn btn-secondary" onclick="changeQuant(1, '${product._id}')">+</button>
+      <span class="quantity" id="amount">1</span>
+      <button class="substract btn btn-secondary" onclick="changeQuant(-1, '${product._id}')">-</button><br>
+      <span class="sale-description">Stock: </span>
+      <span class="stock" id="amount">${product.stock}</span>
+      <button onclick="deleteProduct('${product._id}')"class="borrar btn btn-danger">X</button>`
     productList.appendChild(productDiv)
     //Clean barcode value for next operation
     barcode.value = null;

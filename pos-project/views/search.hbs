@@ -16,16 +16,19 @@
   <a href="/logout">Logout</a>
 </nav>
 
-<h1>Sales</h1>
-<input type="text" name="barcode" id="barcode" placeholder="Barcode">
-<button onclick="getProduct()">Add to cart</button>
-<span id="errorMessage" class="hidden">The product does not exist</span>
+<div class="sales-content">
 
-<div class="show-product" id="show-product"></div><br>
+  <h1>Sales</h1>
+  <input type="text" name="barcode" id="barcode" placeholder="Barcode" class="barcode-search">
+  <button class="btn btn-secondary" onclick="getProduct()">Add to cart</button>
+  <span id="errorMessage" class="hidden">The product does not exist</span>
 
-<nav class="navbar navbar-expand-sm bg-primary navbar-dark d-flex justify-content-end fixed-bottom">
-<span class="total" id="total">Total $0</span>
-<button class="checkout btn btn-light" onclick="checkOut()" >Checkout</button>
-</nav>
+  <div class="show-product" id="show-product"></div><br>
 
-<script src="/javascripts/sales.js"></script>
+  <nav class="navbar navbar-expand-sm bg-primary navbar-dark d-flex justify-content-end fixed-bottom navbottom">
+  <span class="total" id="total">Total $0</span>
+  <button class="checkout btn btn-light" onclick="checkOut()" >Checkout</button>
+  </nav>
+
+  <script src="/javascripts/sales.js"></script>
+</div>

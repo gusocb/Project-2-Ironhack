@@ -21,7 +21,7 @@ router.get('/', (req, res, next) => {
 router.get('/signup', (req, res, next) => {
   res.render('signup');
 });
-      
+//Create User
 router.post('/signup', async(req, res, next) => {
   try{
     await User.register({...req.body}, req.body.password)
@@ -124,7 +124,7 @@ router.post('/products/add', checkRole('ADMIN'), ensureLogin.ensureLoggedIn(), (
   })
 });
 
-//Product edit
+//Edit Product Page
 router.get('/products/:productId/edit',checkRole('ADMIN'), ensureLogin.ensureLoggedIn(), (req, res, next) => {
   Product.findById(req.params.productId)
   .then(change => {
@@ -136,12 +136,12 @@ router.get('/products/:productId/edit',checkRole('ADMIN'), ensureLogin.ensureLog
 });
 
 
-//Product edit POST
+//Product Edit POST
 router.post('/products/:productId/edit', checkRole('ADMIN'), ensureLogin.ensureLoggedIn(),(req, res, next) => {
 
   Product.findByIdAndUpdate(req.params.productId, {...req.body})
-  .then(change => {
-    res.redirect(`/products/${req.params.productId}`);
+  .then((change) => {
+    res.redirect(`/products`);
   })
   .catch(error => {
     console.log(error);
@@ -160,7 +160,7 @@ router.get('/search', ensureLogin.ensureLoggedIn(), checkRole('USER', 'ADMIN'), 
 });
 
 
-//Update product DB
+//Update product stock in DB
 router.post('/checkout', ensureLogin.ensureLoggedIn(), checkRole('ADMIN', 'USER'), async (req, res, next) => {
   const productFromSale = req.body;
   let newSale = await Sale.create({user: req.user._id})

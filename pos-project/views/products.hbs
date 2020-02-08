@@ -16,18 +16,26 @@
   <a href="/logout">Logout</a>
 </nav>
 
-<h1>Products</h1>
-<a href="/products/add">Add Product</a>
-{{#each prod}}
+<div class="product-main-container">
 
-<div class="card">
-  <div class="card-body">
-    <h4 class="card-title">{{this.name}}</h4>
-    <p class="card-text">Barcode: {{this.barcode}}</p>
-    <p class="card-text">Price: ${{this.price}}</p>
-    <p class="card-text">Stock: {{this.stock}}</p>
-    <a href="/products/{{this._id}}/edit" class="card-link">Edit</a>
-    <a href="/products/delete" class="card-link">Delete</a>
+  <div class="product-title">
+    <h1>Products</h1>
+    <a class="btn btn-success" href="/products/add">Add New Product</a>
   </div>
+
+  <div class="product-container">
+    {{#each prod}}
+    <div class="card" id="catalog">
+      <div class="card-body">
+        <h4 class="card-title">{{this.name}}</h4>
+        <p class="card-text">Barcode: {{this.barcode}}</p>
+        <p class="card-text">Price: ${{this.price}}</p>
+        <p class="card-text">Stock: {{this.stock}}</p>
+        <a href="/products/{{this._id}}/edit" class="card-link">Edit</a>
+        <a href="/products/delete" class="card-link">Delete</a>
+      </div>
+    </div>
+    {{/each}}
+  </div>
+
 </div>
-{{/each}}

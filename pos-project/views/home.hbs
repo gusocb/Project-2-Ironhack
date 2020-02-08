@@ -18,6 +18,14 @@
   </ul>
   <a href="/logout">Logout</a>
 </nav>
+<div class="home-info">
 
-<h1>Bienvenido {{user.name}} {{user.lastName}}</h1>
-<h2>Your role is : {{user.role}}</h2>
+      <div class="card" id = "user-card">
+        <div class="card-body" id = "introduction">
+          <h1 class="card-title">Welcome!</h1>
+          <h2 class="card-title">{{user.name}} {{user.lastName}}</h2>
+          <h3 class="card-title">Your role is : {{user.role}}</h3>
+        </div>
+      </div>
+
+</div>

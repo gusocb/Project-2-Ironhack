@@ -17,16 +17,24 @@
 </nav>
 
 {{#each sales}}
-  Sale {{@index}}:
-  <br/>
-  {{#each this.movements}}
-    Quantity: {{this.quantity}}<br>
-    Product: {{this.product.name}}<br>
-    Single Price: ${{this.product.price}}<br>
-    Sub-Total: ${{this.subTotal}}
-  <br/>
-  {{/each}}
-  Total Sale: {{this.total}}
-  <br/>
-  <br>
+  <div class="card">
+    <div class="card-body">
+    <h3 class="card-title">
+      Sale {{@index}}:
+    </h3>
+
+    {{#each this.movements}}
+    <p class="card-text"> 
+      Quantity: {{this.quantity}}
+      Product: {{this.product.name}}
+      Single Price: ${{this.product.price}}
+      Sub-Total: ${{this.subTotal}}
+    </p>
+    {{/each}}
+    
+    <h4 class="card-title">
+    Total Sale: ${{this.total}}
+    </h4>
+    </div>
+  </div>
 {{/each}}
